@@ -11,8 +11,8 @@ import os
 
 
 #Define the working of the button
-def my_command(actionName):
-   messagebox.askokcancel("Play movie", "Play movie - "+actionName)
+def my_command(actionName,movieLength):
+   messagebox.askokcancel("Play movie", "Play movie - "+actionName+" ("+movieLength+" mins)")
 
 #define read data
 def read_data():
@@ -106,7 +106,7 @@ def create_movie_buttons():
               btn_imgs.append(btn_image)
 
 
-              btn = Button(frame_buttons, image=btn_image, command=lambda i=i:my_command(actionName=rows[i][5]),height= 180, width=135)
+              btn = Button(frame_buttons, image=btn_image, command=lambda i=i:my_command(actionName=rows[i][5],movieLength=rows[i][10]),height= 180, width=135)
               btn.grid( row= ( (count_matched-1) // 5)+1  , column= ((count_matched-1) % 5), padx=8,pady=8, sticky="w")
               '''
               print("matched : " + str(count_matched ) )
@@ -127,6 +127,7 @@ def clear_all(blst,ilst,slst):
 
       for itm in slst:
          slst.remove(itm)
+      del slst[:]
 
       director_var.delete('1.0',tk.END)
       actor_var.delete('1.0',tk.END)
